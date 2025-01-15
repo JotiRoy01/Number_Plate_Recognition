@@ -1,0 +1,12 @@
+training_pipeline_config :
+  pipeline_name : src/ANPR
+  artifact_dir: artifact
+
+data_ingestion_config :
+  data_url = "https://drive.google.com/file/d/1d3IcHxIbP-FRiUzhhDtdnALwcnJ0AqMP/view?usp=sharing"
+  raw_data_dir = raw_data
+  zip_download_dir = zip_data
+  ingested_dir = ingested_data
+  ingested_train_dir = train
+  ingested_test_dir = test
+  
