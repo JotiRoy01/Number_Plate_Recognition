@@ -19,12 +19,12 @@ TRAINING_PIPELINE_NAME_KEY = "pipeline_name"
 
 #data ingestion related config
 DATA_INGESTION_CONFIG_KEY = "data_ingestion_config"
-DATA_URL_CONFIG_KEY = "data_url"
-RAW_DATA_DIR_CONFIG_KEY = "raw_data"
-ZIP_DOWLOAD_DIR_CONFIG_KEY = "zip_data"
-INGESTED_DIR_CONFIG_KEY = "ingested_data"
-INGESTED_TRAIN_DIR_CONFIG_KEY = "train"
-INGESTED_TEST_DIR_CONFIG_KEY = "test"
+DATA_INGESTION_URL_CONFIG_KEY = "data_url"
+DATA_INGESTION_RAW_DATA_DIR_CONFIG_KEY = "raw_data_dir"
+DATA_INGESTION_ZIP_DOWLOAD_DIR_CONFIG_KEY = "zip_download_dir"
+DATA_INGESTION_DIR_CONFIG_KEY = "ingested_dir"
+DATA_INGESTIONTRAIN_TRAIN_DIR_CONFIG_KEY = "ingested_train_dir"
+DATA_INGESTIONTEST_TEST_DIR_CONFIG_KEY = "ingested_test_dir"
 
 EXPERIMENT_DIR_NAME="experiment"
 EXPERIMENT_FILE_NAME="experiment.csv"
