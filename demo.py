@@ -14,8 +14,9 @@ def main() :
         # training_data_config =Configuration(config_file_path=config_path).get_training_pipeline_config()
         # print(training_data_config)
         # logging.info("main function execution completed")
-        ingestion_config = Configuration(config_file_path=config_path)
-        print(f"ingestion_config{ingestion_config.get_data_ingestion_config()}")   
+        configure = Configuration(config_file_path=config_path)
+        
+        print(f"{configure.get_prepare_base_model_config()}")   
 
     except Exception as e:
         raise ANPR_Exceptioon(e,sys) from e

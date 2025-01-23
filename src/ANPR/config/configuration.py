@@ -1,4 +1,4 @@
-from ANPR.entity.config_entity import DataIngestionConfig, TrainingPipelineConfig
+from ANPR.entity.config_entity import DataIngestionConfig, TrainingPipelineConfig,DataTransformationConfig, PrepareBaseModelConfig
 from ANPR.utils.common import *
 from ANPR.logger import log
 import os, sys
@@ -20,10 +20,10 @@ class Configuration :
     def get_data_ingestion_config(self) -> DataIngestionConfig :
         try :
             artifact_dir = self.training_pipeline_config.artifact_dir
-            data_ingested_artifact_dir = os.path.join(artifact_dir,
+            data_ingestion_artifact_dir = os.path.join(artifact_dir,
                                                       DATA_INGESTION_DIR_CONFIG_KEY,
                                                       self.time_stamp)
-            data_ingestion_artifact_dir = os.path.join(data_ingested_artifact_dir,DATA_INGESTION_DIR_CONFIG_KEY)
+            #data_ingestion_artifact_dir = os.path.join(data_ingested_artifact_dir,DATA_INGESTION_DIR_CONFIG_KEY)
 
             data_ingested_config_info = self.config_info[DATA_INGESTION_CONFIG_KEY]
             data_url = data_ingested_config_info[DATA_INGESTION_URL_CONFIG_KEY]
@@ -44,6 +44,46 @@ class Configuration :
             return ingested_dir_config
         except Exception as e :
             raise ANPR_Exceptioon(e,sys) from e
+        
+
+    def data_transformation_config(self) -> DataTransformationConfig:
+        try :
+            artifact_dir = self.training_pipeline_config.artifact_dir
+            data_transformation_config_info = self.config_info[DATA_TRANSFORMATION_CONFIG]
+            data_transformation_dir_path = os.path.join(artifact_dir,data_transformation_config_info[DATA_TRANSFORMATION_ARTIFACT_DIR])
+            data_transformantion_labeled_dataframe_file_path = os.path.join(data_transformation_dir_path,data_transformation_config_info[DATA_TRANSFORMATION_LABELED_DATAFRAME])
+            data_transformation_transformed_data_file_path = os.path.join(data_transformation_dir_path, data_transformation_config_info[DATA_TRANSFORMATION_TRANSFORMED_DATA])
+            data_transformation_transformed_ouput_file_path = os.path.join(data_transformation_dir_path, data_transformation_config_info[DATA_TRANSFORMATION_TRANSFORMED_OUTPUT])
+
+            transform_dir_config = DataTransformationConfig(
+                data_transformation_artifact_dir=data_transformation_dir_path,
+                labeled_dataframe=data_transformantion_labeled_dataframe_file_path,
+                transformed_data=data_transformation_transformed_data_file_path,
+                transfromed_output=data_transformation_transformed_ouput_file_path
+            )
+
+            return transform_dir_config
+
+        except Exception as e :
+            raise ANPR_Exceptioon(e,sys) from e
+        
+    def get_prepare_base_model_config(self) -> PrepareBaseModelConfig :
+        try :
+            artifact_dir = self.training_pipeline_config.artifact_dir
+            prepare_base_model_config_info = self.config_info[PREPARE_BASE_MODEL_CONFIG]
+            prepare_base_model_dir_path = os.path.join(artifact_dir, prepare_base_model_config_info[PREPARE_BASE_MODEL_DIR])
+            base_model_path = os.path.join(prepare_base_model_dir_path, prepare_base_model_config_info[PREPARE_BASE_MODEL_PATH])
+            updated_base_model_path = os.path.join(prepare_base_model_dir_path, prepare_base_model_config_info[PREPARE_BASE_UPDATED_MODEL_PATH])
+
+            prepare_base_config = PrepareBaseModelConfig(
+                prepare_base_model_dir=prepare_base_model_dir_path,
+                base_model_path=base_model_path,
+                updated_model_path=updated_base_model_path
+            )
+            return prepare_base_config
+        except Exception as e :
+            raise ANPR_Exceptioon(e,sys) from e
+    
 
     def get_training_pipeline_config(self) ->TrainingPipelineConfig :
         try :

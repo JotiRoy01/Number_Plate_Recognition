@@ -1,6 +1,6 @@
 training_pipeline_config :
   pipeline_name : src\ANPR
-  artifact_dir: artifact
+  artifact_dir: artifacts
 
 data_ingestion_config :
   data_url: "https://drive.google.com/file/d/1d3IcHxIbP-FRiUzhhDtdnALwcnJ0AqMP/view?usp=sharing"
@@ -16,4 +16,15 @@ data_transformation_config :
   transformed_data: data.npy
   transformed_output: output.npy
   
+prepare_base_model_config :
+  prepare_base_model_dir: preparebasemodel
+  base_model_path: base_model.h5
+  updated_model_path: updated_model.h5
+  augmentaion: True
+  image_size: 8
+  inlcude_top: False
+  epochs: 1
+  weights: imagenet
+  learning_rate: 1e-4
+  classes: 4
 
