@@ -10,3 +10,10 @@ data_ingestion_config :
   ingested_train_dir: train
   ingested_test_dir: test
   
+data_transformation_config :
+  data_transformation_artifact_dir: data_transformation
+  labeled_dataframe : labels.csv
+  transformed_data: data.npy
+  transformed_output: output.npy
+  
+

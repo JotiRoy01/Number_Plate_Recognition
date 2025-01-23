@@ -1,10 +1,11 @@
 # __init__.py for constants
 import os
+#from from_root import from_root
 from datetime import datetime
 def get_current_time_stamp():
     return f"{datetime.now().strftime('%Y-%m-%d-%H-%M-%S')}"
 
-    
+ 
 ROOT_DIR = os.getcwd()  #to get current working directory
 CONFIG_DIR = "config"
 CONFIG_FILE_NAME = "config.yaml"
@@ -25,6 +26,13 @@ DATA_INGESTION_ZIP_DOWLOAD_DIR_CONFIG_KEY = "zip_download_dir"
 DATA_INGESTION_DIR_CONFIG_KEY = "ingested_dir"
 DATA_INGESTIONTRAIN_TRAIN_DIR_CONFIG_KEY = "ingested_train_dir"
 DATA_INGESTIONTEST_TEST_DIR_CONFIG_KEY = "ingested_test_dir"
+
+# data transformation related config key
+DATA_TRANSFORMATION_CONFIG = "data_transformation_config"
+DATA_TRANSFORMATION_ARTIFACT_DIR = "data_transformation_artifact_dir"
+LABELED_DATAFRAME = "labels.csv"
+TRANSFORMED_DATA =  "data.npy"
+TRANSFORMED_OUTPUT = "output.npy"
 
 EXPERIMENT_DIR_NAME="experiment"
 EXPERIMENT_FILE_NAME="experiment.csv"

@@ -23,25 +23,24 @@ class Configuration :
             data_ingested_artifact_dir = os.path.join(artifact_dir,
                                                       DATA_INGESTION_DIR_CONFIG_KEY,
                                                       self.time_stamp)
-            data_ingested_config = self.config_info[DATA_INGESTION_CONFIG_KEY]
-            data_url = data_ingested_config[DATA_INGESTION_URL_CONFIG_KEY]
-            raw_data_dir = data_ingested_config[DATA_INGESTION_RAW_DATA_DIR_CONFIG_KEY]
-            zip_download_dir = data_ingested_config[DATA_INGESTION_ZIP_DOWLOAD_DIR_CONFIG_KEY]
-            ingested_dir = data_ingested_config[DATA_INGESTION_DIR_CONFIG_KEY]
-            ingested_train_dir = data_ingested_config[DATA_INGESTIONTRAIN_TRAIN_DIR_CONFIG_KEY]
-            ingested_test_dir = data_ingested_config[DATA_INGESTIONTEST_TEST_DIR_CONFIG_KEY]
-            ingested_dir_config = DataIngestionConfig(
-                data_url=data_url,
-                zip_download_dir=zip_download_dir,
-                raw_data_dir=raw_data_dir,
-                ingested_train_dir=ingested_train_dir,
-                ingested_test_dir=ingested_test_dir,
-                ingested_dir=ingested_dir
+            data_ingestion_artifact_dir = os.path.join(data_ingested_artifact_dir,DATA_INGESTION_DIR_CONFIG_KEY)
 
-        )
-            #print(f"data_ingestion_config{data_ingested_config}")
-            #print(data_ingestion_artifact_dir)
-            logging.info(f"Data ingestion config : {data_ingested_config}")
+            data_ingested_config_info = self.config_info[DATA_INGESTION_CONFIG_KEY]
+            data_url = data_ingested_config_info[DATA_INGESTION_URL_CONFIG_KEY]
+        
+            raw_data_dir = os.path.join(data_ingestion_artifact_dir, data_ingested_config_info[DATA_INGESTION_RAW_DATA_DIR_CONFIG_KEY])
+            zip_download_dir = os.path.join(data_ingestion_artifact_dir,data_ingested_config_info[DATA_INGESTION_RAW_DATA_DIR_CONFIG_KEY],data_ingested_config_info[DATA_INGESTION_ZIP_DOWLOAD_DIR_CONFIG_KEY])
+            ingested_train_dir = os.path.join(data_ingestion_artifact_dir, data_ingested_config_info[DATA_INGESTIONTRAIN_TRAIN_DIR_CONFIG_KEY])
+
+            ingested_test_dir = os.path.join(data_ingestion_artifact_dir, data_ingested_config_info[DATA_INGESTIONTEST_TEST_DIR_CONFIG_KEY])
+            ingested_dir_config = DataIngestionConfig(
+            data_url=data_url,
+            zip_download_dir=zip_download_dir,
+            raw_data_dir=raw_data_dir,
+            ingested_train_dir=ingested_train_dir,
+            ingested_test_dir=ingested_test_dir,
+            ingested_dir=data_ingestion_artifact_dir)
+
             return ingested_dir_config
         except Exception as e :
             raise ANPR_Exceptioon(e,sys) from e
