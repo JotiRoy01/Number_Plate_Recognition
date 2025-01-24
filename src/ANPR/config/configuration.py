@@ -1,4 +1,4 @@
-from ANPR.entity.config_entity import DataIngestionConfig, TrainingPipelineConfig,DataTransformationConfig, PrepareBaseModelConfig
+from ANPR.entity.config_entity import DataIngestionConfig, TrainingPipelineConfig,DataTransformationConfig, PrepareBaseModelConfig, PrepareCallbacksConfig, TrainingConfig
 from ANPR.utils.common import *
 from ANPR.logger import log
 import os, sys
@@ -55,14 +55,14 @@ class Configuration :
             data_transformation_transformed_data_file_path = os.path.join(data_transformation_dir_path, data_transformation_config_info[DATA_TRANSFORMATION_TRANSFORMED_DATA])
             data_transformation_transformed_ouput_file_path = os.path.join(data_transformation_dir_path, data_transformation_config_info[DATA_TRANSFORMATION_TRANSFORMED_OUTPUT])
 
-            transform_dir_config = DataTransformationConfig(
+            transformed_dir_config = DataTransformationConfig(
                 data_transformation_artifact_dir=data_transformation_dir_path,
                 labeled_dataframe=data_transformantion_labeled_dataframe_file_path,
                 transformed_data=data_transformation_transformed_data_file_path,
                 transfromed_output=data_transformation_transformed_ouput_file_path
             )
 
-            return transform_dir_config
+            return transformed_dir_config
 
         except Exception as e :
             raise ANPR_Exceptioon(e,sys) from e
@@ -81,6 +81,42 @@ class Configuration :
                 updated_model_path=updated_base_model_path
             )
             return prepare_base_config
+        except Exception as e :
+            raise ANPR_Exceptioon(e,sys) from e
+        
+
+
+    def get_prepare_callbacks_config(self) -> PrepareCallbacksConfig :
+        try:
+            artifact_dir = self.training_pipeline_config.artifact_dir
+            prepare_callbacks_config = self.config_info[PREPARE_CALLBACKS_CONFIG]
+            prepare_callbacks_artifacts_dir_path = os.path.join(artifact_dir, prepare_callbacks_config[PREPARE_CALLBACKS_ARTIFACTS_DIR])
+            prepare_callbacks_tensorbroad_root_log_dir_path = os.path.join(prepare_callbacks_artifacts_dir_path, prepare_callbacks_config[PREPARE_TENSORBROAD_ROOT_LOG_DIR])
+            prepare_callbacks_checkpoint_dir_path = os.path.join(prepare_callbacks_artifacts_dir_path, prepare_callbacks_config[PREPARE_CHECKPOINT_DIR])
+            prepare_callbacks_checkpoint_model_path = os.path.join(prepare_callbacks_artifacts_dir_path, prepare_callbacks_config[PREPARE_CHECKPOINT_MODEL])
+
+            prepare_callbacks_config = PrepareCallbacksConfig(
+                prepare_callbacks_artifacts_dir= prepare_callbacks_artifacts_dir_path,
+                tensorbroad_root_log_dir= prepare_callbacks_tensorbroad_root_log_dir_path,
+                checkpoint_dir=prepare_callbacks_checkpoint_dir_path,
+                checkpoint_model=prepare_callbacks_checkpoint_model_path
+            )
+            return prepare_callbacks_config
+        except Exception as e :
+            raise ANPR_Exceptioon(e,sys) from e
+        
+    def get_training_config(self) -> TrainingConfig :
+        try :
+            artifact_dir = self.training_pipeline_config.artifact_dir
+            training_config = self.config_info[TRAINING_CONFIG]
+            training_trained_dir_path = os.path.join(artifact_dir, training_config[TRAINING_TRAINED_MODEL_DIR])
+            training_model_dir_path = os.path.join(training_trained_dir_path,training_config[TRAINING_TRAINED_MODEL])
+            
+            training_config = TrainingConfig(
+                trained_model=training_model_dir_path,
+                model_training_dir=training_trained_dir_path
+            )
+            return training_config
         except Exception as e :
             raise ANPR_Exceptioon(e,sys) from e
     

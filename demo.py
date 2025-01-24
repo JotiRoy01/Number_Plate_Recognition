@@ -16,7 +16,9 @@ def main() :
         # logging.info("main function execution completed")
         configure = Configuration(config_file_path=config_path)
         
-        print(f"{configure.get_prepare_base_model_config()}")   
+        #print(f"{configure.get_prepare_base_model_config()}")  
+        #print(f"{configure.get_prepare_callbacks_config()}") 
+        print(f"{configure.get_training_config()}")
 
     except Exception as e:
         raise ANPR_Exceptioon(e,sys) from e

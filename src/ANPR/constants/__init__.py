@@ -42,5 +42,25 @@ PREPARE_BASE_MODEL_PATH = "base_model_path"
 PREPARE_BASE_UPDATED_MODEL_PATH = "updated_model_path"
 
 
+#prepare callback related constants
+PREPARE_CALLBACKS_CONFIG = "prepare_callbacks_config"
+PREPARE_CALLBACKS_ARTIFACTS_DIR= "prepare_callbacks_artifacts_dir"
+PREPARE_TENSORBROAD_ROOT_LOG_DIR = "tensorbroad_root_log_dir"
+PREPARE_CHECKPOINT_DIR = "checkpoint_dir"
+PREPARE_CHECKPOINT_MODEL = "checkpoint_model"
+
+#model traning related constant
+TRAINING_CONFIG = "training_config"
+TRAINING_TRAINED_MODEL_DIR = "model_training_dir"
+TRAINING_TRAINED_MODEL = "trained_model"
+
+#prediction pipeline related constants
+PREDICTED_PIPELINE_CONFIG = "predicted_pipelint_config"
+STATIC_DIR = "static_dir"
+PREDICTED_SUB_DIR= "predict_sub_dir"
+ROI_SUB_DIR = "roi_sub_dir"
+UPLOAD_SUB_DIR = "upload_sub_dir"
+OCR_SUB_DIR = "ocr_sub_dir"
+
 EXPERIMENT_DIR_NAME="experiment"
 EXPERIMENT_FILE_NAME="experiment.csv"
