@@ -1,15 +1,15 @@
 from collections import namedtuple
 from datetime import datetime
 import uuid
-from ANPR.config.configuration import Configuration
-from ANPR.logger.log import logging, get_log_file_name
-from ANPR.exception import ANPR_Exceptioon
+from src.ANPR.config.configuration import Configuration
+from src.ANPR.logger.log import logging, get_log_file_name
+from src.ANPR.exception import ANPR_Exceptioon
 from threading import Thread
 from typing import List
 from multiprocessing import Process
 
-from ANPR.entity.config_entity import DataIngestionConfig
-from ANPR.constants import EXPERIMENT_DIR_NAME, EXPERIMENT_FILE_NAME
+from src.ANPR.entity.config_entity import DataIngestionConfig
+from src.ANPR.constants import EXPERIMENT_DIR_NAME, EXPERIMENT_FILE_NAME
 
 import os ,sys
 import pandas as pd

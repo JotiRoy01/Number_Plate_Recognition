@@ -1,9 +1,9 @@
-from ANPR.entity.config_entity import DataIngestionConfig, TrainingPipelineConfig,DataTransformationConfig, PrepareBaseModelConfig, PrepareCallbacksConfig, TrainingConfig
-from ANPR.utils.common import *
-from ANPR.logger import log
+from src.ANPR.entity.config_entity import DataIngestionConfig, TrainingPipelineConfig,DataTransformationConfig, PrepareBaseModelConfig, PrepareCallbacksConfig, TrainingConfig
+from src.ANPR.utils.common import *
+from src.ANPR.logger import log
 import os, sys
-from ANPR.constants import *
-from ANPR.exception import ANPR_Exceptioon
+from src.ANPR.constants import *
+from src.ANPR.exception import ANPR_Exceptioon
 
 
 class Configuration :

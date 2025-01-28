@@ -2,8 +2,8 @@ import os,sys
 from datetime import datetime
 from pathlib import Path
 #from box import ConfixBox
-from ANPR.logger.log import logging
-from ANPR.exception import ANPR_Exceptioon
+from src.ANPR.logger.log import logging
+from src.ANPR.exception import ANPR_Exceptioon
 import yaml
 import dill
 

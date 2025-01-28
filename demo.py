@@ -1,7 +1,13 @@
-from ANPR.pipeline.pipeline import Pipeline
-from ANPR.exception import ANPR_Exceptioon
-from ANPR.logger.log import logging
-from ANPR.config.configuration import Configuration
+import sys
+import os
+
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
+from src.ANPR.pipeline.pipeline import Pipeline
+from src.ANPR.exception import ANPR_Exceptioon
+from src.ANPR.logger.log import logging
+from src.ANPR.config.configuration import Configuration
+from src.ANPR.components.data_ingestion import DataIngestion
+from src.ANPR.entity.config_entity import DataIngestionConfig
 import os
 import sys
 
@@ -15,10 +21,13 @@ def main() :
         # print(training_data_config)
         # logging.info("main function execution completed")
         configure = Configuration(config_file_path=config_path)
+        dataIngestion_config = configure.get_data_ingestion_config()
         
+        
+        DataIngestion(dataIngestion_config).initiate_data_ingestion()
         #print(f"{configure.get_prepare_base_model_config()}")  
         #print(f"{configure.get_prepare_callbacks_config()}") 
-        print(f"{configure.get_training_config()}")
+        #print(f"{configure.get_training_config()}")
 
     except Exception as e:
         raise ANPR_Exceptioon(e,sys) from e

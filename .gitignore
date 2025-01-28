@@ -170,3 +170,5 @@ cython_debug/
 # PyPI configuration file
 .pypirc
 /venv_ANPR
+/src/ANPR/artifacts/
+notebook/src/ANPR/artifacts/ingested_dir

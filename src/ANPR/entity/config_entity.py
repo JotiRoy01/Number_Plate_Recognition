@@ -1,5 +1,5 @@
 from collections import namedtuple
-from ANPR.constants import *
+from src.ANPR.constants import *
 from dataclasses import dataclass
 
 DataIngestionConfig = namedtuple("DataIngestionConfig",
