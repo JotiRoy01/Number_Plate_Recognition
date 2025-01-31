@@ -2,15 +2,31 @@ import os,sys
 from datetime import datetime
 from pathlib import Path
 #from box import ConfixBox
-from src.ANPR.logger.log import logging
-from src.ANPR.exception import ANPR_Exceptioon
+from ANPR.logger.log import logging
+from ANPR.exception import ANPR_Exceptioon
 import yaml
 import dill
+import numpy as np
 
 
 
 
 #CURRENT_TIME_STAMP = get_current_time_stamp()
+
+def save_numpy_array_data(file_path: str, array:np.array) :
+        ''''
+        save numpy array data to file
+        file_path: str location of file to save
+        array: np.array data to save
+        '''
+        try :
+            dir_path = os.path.dirname(file_path)
+            os.makedirs(dir_path,exist_ok=True)
+            with open(file_path, 'wb') as file_obj :
+                  np.save(file_obj, array)
+        except Exception as e :
+            raise ANPR_Exceptioon(e,sys) from e
+        
 
 def write_yaml_file(file_path:str,data:dict=None) :
         """"

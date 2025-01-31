@@ -1,5 +1,5 @@
 from collections import namedtuple
-from src.ANPR.constants import *
+from ANPR.constants import *
 from dataclasses import dataclass
 
 DataIngestionConfig = namedtuple("DataIngestionConfig",
@@ -15,3 +15,4 @@ PrepareCallbacksConfig = namedtuple("PrepareCallbacksConfig",["prepare_callbacks
 TrainingConfig = namedtuple("TrainingConfig", ["model_training_dir", "trained_model"])
 
 PipelineConfig = namedtuple("PipelineConfig",["static_dir", "predict_sub_dir", "roi_sub_dir", "uplaod_sub_dir", "ocr_sub_dir"])
+

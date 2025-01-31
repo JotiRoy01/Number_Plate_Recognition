@@ -1,11 +1,11 @@
 import os, sys
 import urllib.request
-from src.ANPR.config.configuration import Configuration
-from src.ANPR.constants import *
-from src.ANPR.entity.config_entity import DataIngestionConfig
-from src.ANPR.exception import *
-from src.ANPR.logger.log import logging
-from src.ANPR.utils.common import read_yaml
+from ANPR.config.configuration import Configuration
+from ANPR.constants import *
+from ANPR.entity.config_entity import DataIngestionConfig
+from ANPR.exception import *
+from ANPR.logger.log import logging
+from ANPR.utils.common import read_yaml
 import urllib
 import gdown
 from zipfile import ZipFile, Path

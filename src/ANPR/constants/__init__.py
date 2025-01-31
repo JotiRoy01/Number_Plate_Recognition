@@ -62,5 +62,22 @@ ROI_SUB_DIR = "roi_sub_dir"
 UPLOAD_SUB_DIR = "upload_sub_dir"
 OCR_SUB_DIR = "ocr_sub_dir"
 
+#Artifacts related config
+DATA_INGESTION_ARTIFACTS = "data_ingestion_artifacts"
+IMAGE_DATA_DIR = "image_data_dir"
+
+#Data Transformation artifacts config
+DATA_TRANSFORMATION_ARTIFACTS_CONFIG = "data_transformation_artifact_config"
+TRANSFORMED_DATA_FILE_PATH = "transformed_data_file_path"
+TRANSFORMED_OUTPUT_FILE_PATH = "transformed_output_file_path"
+
+# Pre paperbase artifacts related constants
+PREPARE_BASE_MODEL_ARTIFACTS = "prepare_base_model_artifact"
+BASE_MODEL_FILE_PATH = "base_model_file_path"
+UPDATED_MODEL_FILE_PATH = "updated_model_file_path"
+#Model trainer artifacts related constants
+MODEL_TRAINER_ARTIFACTS = "model_trainer_artifacts"
+TRAINED_MODEL_PATH = "trained_model_path"
+
 EXPERIMENT_DIR_NAME="experiment"
 EXPERIMENT_FILE_NAME="experiment.csv"

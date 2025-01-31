@@ -1,9 +1,10 @@
-from src.ANPR.entity.config_entity import DataIngestionConfig, TrainingPipelineConfig,DataTransformationConfig, PrepareBaseModelConfig, PrepareCallbacksConfig, TrainingConfig
-from src.ANPR.utils.common import *
-from src.ANPR.logger import log
+from ANPR.entity.config_entity import DataIngestionConfig, TrainingPipelineConfig,DataTransformationConfig, PrepareBaseModelConfig, PrepareCallbacksConfig, TrainingConfig
+from ANPR.entity.artifacts_entity import DataIngestionArtifacts, DataTransformationArtifacts, PrepareBaseModelArtifacts, ModelTrainerArtifacts
+from ANPR.utils.common import *
+from ANPR.logger import log
 import os, sys
-from src.ANPR.constants import *
-from src.ANPR.exception import ANPR_Exceptioon
+from ANPR.constants import *
+from ANPR.exception import ANPR_Exceptioon
 
 
 class Configuration :
@@ -13,7 +14,7 @@ class Configuration :
         try:
             self.config_info = read_yaml(config_file_path=config_file_path)
             self.training_pipeline_config = self.get_training_pipeline_config()
-            self.time_stamp = current_time_stamp
+            #self.time_stamp = current_time_stamp
         except Exception as e :
             raise ANPR_Exceptioon(e, sys) from e
         
@@ -22,7 +23,7 @@ class Configuration :
             artifact_dir = self.training_pipeline_config.artifact_dir
             data_ingestion_artifact_dir = os.path.join(artifact_dir,
                                                       DATA_INGESTION_DIR_CONFIG_KEY,
-                                                      self.time_stamp)
+                                                      )
             #data_ingestion_artifact_dir = os.path.join(data_ingested_artifact_dir,DATA_INGESTION_DIR_CONFIG_KEY)
 
             data_ingested_config_info = self.config_info[DATA_INGESTION_CONFIG_KEY]
@@ -119,6 +120,42 @@ class Configuration :
             return training_config
         except Exception as e :
             raise ANPR_Exceptioon(e,sys) from e
+        
+    def get_data_ingestion_artifacts(self) -> DataIngestionArtifacts :
+        try :
+            
+            artifacts_dir = self.training_pipeline_config.artifact_dir
+            ingestion_config_info = self.config_info[DATA_INGESTION_CONFIG_KEY]
+            ingestion_data_dir = os.path.join(artifacts_dir, ingestion_config_info[DATA_INGESTION_DIR_CONFIG_KEY])
+            artifacts_images_config = self.config_info[DATA_INGESTION_ARTIFACTS]
+            raw_data_dir = os.path.join(artifacts_dir,ingestion_data_dir, ingestion_config_info[DATA_INGESTION_RAW_DATA_DIR_CONFIG_KEY])
+
+            ingested_images_dir = os.path.join(raw_data_dir, artifacts_images_config[IMAGE_DATA_DIR])
+
+            data_ingestion_artifact = DataIngestionArtifacts(
+                image_data_dir=ingested_images_dir
+            )
+            return data_ingestion_artifact
+        except Exception as e :
+            raise ANPR_Exceptioon(e,sys) from e
+        
+    def get_data_transformation_artifact_config(self) -> DataTransformationArtifacts :
+        try :
+            artifact_dir = self.training_pipeline_config.artifact_dir
+            data_transformation_artifact_config = self.config_info[DATA_TRANSFORMATION_ARTIFACTS_CONFIG]
+            data_transformation_config = self.config_info[DATA_TRANSFORMATION_CONFIG]
+            data_transformation_artifact_dir = data_transformation_config[DATA_TRANSFORMATION_ARTIFACT_DIR]
+            transformed_data_file_path = os.path.join(artifact_dir,data_transformation_artifact_dir, data_transformation_artifact_config[TRANSFORMED_DATA_FILE_PATH])
+            transformed_output_file_path = os.path.join(artifact_dir,TRANSFORMED_OUTPUT_FILE_PATH)
+
+            data_transformation_artifact = DataTransformationArtifacts(
+                transformed_data_file_path=str,
+                transformed_output_file_path=str
+            )
+            return data_transformation_artifact
+        except Exception as e :
+            raise ANPR_Exceptioon(e,sys) from e
+
     
 
     def get_training_pipeline_config(self) ->TrainingPipelineConfig :
