@@ -40,6 +40,14 @@ PREPARE_BASE_MODEL_CONFIG = "prepare_base_model_config"
 PREPARE_BASE_MODEL_DIR = "prepare_base_model_dir"
 PREPARE_BASE_MODEL_PATH = "base_model_path"
 PREPARE_BASE_UPDATED_MODEL_PATH = "updated_model_path"
+AUGMETATION = True
+IMAGE_SIZE = [224, 224, 3]
+BATCH_SIZE = 8
+INCLUDE_TOP= False
+EPOCHS = 1
+WEIGHTS = 'imagenet'
+LEARNING_RATE = 1e-4
+CLASSES = 4
 
 
 #prepare callback related constants

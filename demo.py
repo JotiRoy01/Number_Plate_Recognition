@@ -8,6 +8,7 @@ from src.ANPR.logger.log import logging
 from src.ANPR.config.configuration import Configuration
 from src.ANPR.components.data_ingestion import DataIngestion
 from src.ANPR.components.data_transformation import DataTransformation
+from src.ANPR.components.prepare_base_model import PrepareBaseModel
 from src.ANPR.entity.config_entity import DataIngestionConfig
 import os
 import sys
@@ -26,13 +27,16 @@ def main() :
         #Data_Ingestion
         # data_ingestion_artifacts = configure.get_data_ingestion_artifacts()
         # print(data_ingestion_artifacts)
-        data_transformed_artifacts = configure.get_data_transformation_artifact_config()
-        print(data_transformed_artifacts)
+        # data_transformed_artifacts = configure.get_data_transformation_artifact_config()
+        # print(data_transformed_artifacts)
 
-        data_transformed_config = configure.data_transformation_config()
-        data_ingestion_artifacts = configure.get_data_ingestion_artifacts()
+        # data_transformed_config = configure.data_transformation_config()
+        # data_ingestion_artifacts = configure.get_data_ingestion_artifacts()
+        prepare_base_model_config = configure.get_prepare_base_model_config()
 
-        DataTransformation(data_transformed_config,data_ingestion_artifacts).initiate_data_transformation()
+        PrepareBaseModel(prepare_base_model_config=prepare_base_model_config).initiate_prepare_base_model()
+
+        #DataTransformation(data_transformed_config,data_ingestion_artifacts).initiate_data_transformation()
         #DataIngestion(dataIngestion_config).initiate_data_ingestion()
         #print(f"{configure.get_prepare_base_model_config()}")  
         #print(f"{configure.get_prepare_callbacks_config()}") 
