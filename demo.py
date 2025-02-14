@@ -10,6 +10,7 @@ from src.ANPR.components.data_ingestion import DataIngestion
 from src.ANPR.components.data_transformation import DataTransformation
 from src.ANPR.components.prepare_base_model import PrepareBaseModel
 from src.ANPR.entity.config_entity import DataIngestionConfig
+from src.ANPR.components.model_trainer import ModelTraining
 import os
 import sys
 
@@ -30,11 +31,14 @@ def main() :
         # data_transformed_artifacts = configure.get_data_transformation_artifact_config()
         # print(data_transformed_artifacts)
 
-        # data_transformed_config = configure.data_transformation_config()
-        # data_ingestion_artifacts = configure.get_data_ingestion_artifacts()
-        prepare_base_model_config = configure.get_prepare_base_model_config()
+        #data_transformed_config = configure.data_transformation_config()
+        #data_ingestion_artifacts = configure.get_data_ingestion_artifacts()
+        #prepare_base_model_config = configure.get_prepare_base_model_config()
 
-        PrepareBaseModel(prepare_base_model_config=prepare_base_model_config).initiate_prepare_base_model()
+        #PrepareBaseModel(prepare_base_model_config=prepare_base_model_config).initiate_prepare_base_model()
+
+        ModelTraining(configure.get_training_config(), configure.get_prepare_callbacks_config(), configure.get_data_ingestion_artifacts(),configure.data_transformation_config(),configure.get_prepare_base_model_config()).initiate_model_training()
+        
 
         #DataTransformation(data_transformed_config,data_ingestion_artifacts).initiate_data_transformation()
         #DataIngestion(dataIngestion_config).initiate_data_ingestion()

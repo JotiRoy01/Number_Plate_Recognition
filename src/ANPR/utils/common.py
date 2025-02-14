@@ -60,3 +60,29 @@ def read_yaml(config_file_path: Path) -> dict :
                     return content
         except Exception as e :
               raise ANPR_Exceptioon(e,sys) from e
+
+def load_numpy_array_data(file_path: str) -> np.array :
+      """"
+      laod numpy array data from file
+      file_path: str location of file to load
+      return np.array data loaded
+      """
+      try :
+            with open(file_path, 'rb') as file_obj : 
+                  return np.load(file_obj)
+      except Exception as e :
+            raise ANPR_Exceptioon(e,sys) from e
+      
+
+def create_directories(path_to_directories: list, verbose = True) :
+      """"
+      create list of directories
+
+      Args:
+        path_to_directories (list) : list of path of directories
+        ignore_log (bool, optional): ignore if multiple dirs is to be created. Defaults to False
+      """
+      for path in path_to_directories :
+            os.makedirs(path, exist_ok=True)
+            if verbose :
+                  logging.info(f"create drectory at: {path}")

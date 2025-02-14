@@ -49,8 +49,8 @@ class PrepareBaseModel :
             self.get_base_model()
             self.get_updated_model()
             prepare_base_model_artifact = PrepareBaseModelArtifacts(
-                base_model_file_path= self.prepare_base_model_config.base_model_path,
-                updated_model_file_path= self.prepare_base_model_config.updated_model_path
+                base_model_path= self.prepare_base_model_config.base_model_path,
+                updated_model_path= self.prepare_base_model_config.updated_model_path
             )
             return prepare_base_model_artifact
         except Exception as e :

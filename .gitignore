@@ -176,3 +176,5 @@ notebook/labels.csv
 notebook/src/ANPR/artifacts/data_transformation/labels.csv
 notebook/src/ANPR/artifacts/preparebasemodel/base_model.h5
 notebook/src/ANPR/artifacts/preparebasemodel/updated_model.h5
+notebook/src/ANPR/artifacts/data_transformation/data.npy
+notebook/src/ANPR/artifacts/data_transformation/output.npy

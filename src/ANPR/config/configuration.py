@@ -60,7 +60,7 @@ class Configuration :
                 data_transformation_artifact_dir=data_transformation_dir_path,
                 labeled_dataframe=data_transformantion_labeled_dataframe_file_path,
                 transformed_data=data_transformation_transformed_data_file_path,
-                transfromed_output=data_transformation_transformed_ouput_file_path
+                transformed_output=data_transformation_transformed_ouput_file_path
             )
 
             return transformed_dir_config
@@ -94,7 +94,7 @@ class Configuration :
             prepare_callbacks_artifacts_dir_path = os.path.join(artifact_dir, prepare_callbacks_config[PREPARE_CALLBACKS_ARTIFACTS_DIR])
             prepare_callbacks_tensorbroad_root_log_dir_path = os.path.join(prepare_callbacks_artifacts_dir_path, prepare_callbacks_config[PREPARE_TENSORBROAD_ROOT_LOG_DIR])
             prepare_callbacks_checkpoint_dir_path = os.path.join(prepare_callbacks_artifacts_dir_path, prepare_callbacks_config[PREPARE_CHECKPOINT_DIR])
-            prepare_callbacks_checkpoint_model_path = os.path.join(prepare_callbacks_artifacts_dir_path, prepare_callbacks_config[PREPARE_CHECKPOINT_MODEL])
+            prepare_callbacks_checkpoint_model_path = os.path.join(prepare_callbacks_checkpoint_dir_path, prepare_callbacks_config[PREPARE_CHECKPOINT_MODEL])
 
             prepare_callbacks_config = PrepareCallbacksConfig(
                 prepare_callbacks_artifacts_dir= prepare_callbacks_artifacts_dir_path,

@@ -9,7 +9,7 @@ from ANPR.constants import *
 from glob import glob
 from tensorflow.keras.preprocessing.image import img_to_array, load_img
 import os,sys
-from ANPR.utils.common import save_numpy_array_data
+from ANPR.utils.common import save_numpy_array_data, load_numpy_array_data
 
 
 
@@ -44,7 +44,7 @@ class DataTransformation :
                 labels_dict["ymax"].append(ymax)
                 dataframe = pd.DataFrame(labels_dict)
                 dataframe.to_csv(self.data_transformation_config.labeled_dataframe,index=False)
-                return dataframe
+            return dataframe
         except Exception as e :
             raise ANPR_Exceptioon(e,sys) from e
 
@@ -74,7 +74,9 @@ class DataTransformation :
                 label_normalized = (normalized_xmin, normalized_xmax, normalized_ymin, normalized_ymax)
                 data.append(normalize_load_image_arr)
                 output.append(label_normalized)
-                return data , output
+                print(data)
+
+            return data , output
         except Exception as e :
             raise ANPR_Exceptioon(e,sys) from e
 
@@ -96,18 +98,21 @@ class DataTransformation :
 
             labels_dataframe = self.get_bounding_box_coordinates()
             image_path_list = list(labels_dataframe['filepath'].apply(self.get_filename_from_XML))
+            #print(f'image path list = {len(image_path_list)}')
             data, output = self.data_preprocessing(labels_dataframe, image_path_list)
 
             # Generating X and y variables
             X = np.array(data, dtype=np.float32)
             y = np.array(output, dtype=np.float32)
-
+            #print(len(data))
             #Save Numpy Array
             save_numpy_array_data(file_path=self.data_transformation_config.transformed_data, array=X)
-            save_numpy_array_data(file_path=self.data_transformation_config.transfromed_output,array=y)
+            save_numpy_array_data(file_path=self.data_transformation_config.transformed_output,array=y)
 
-            data_transformation_artifact = DataTransformationArtifacts(transformed_data_file_path=self.data_transformation_config.transformed_data,
-                                                                       transformed_output_file_path=self.data_transformation_config.transfromed_output)
+            data_transformation_artifact = DataTransformationArtifacts(transformed_data=self.data_transformation_config.transformed_data,
+                                                                       transformed_output=self.data_transformation_config.transformed_output)
+            load_data = load_numpy_array_data(file_path=self.data_transformation_config.transformed_data)
+            #print(load_data.shape)
             return data_transformation_artifact
         except Exception as e :
             raise ANPR_Exceptioon(e,sys) from e 
