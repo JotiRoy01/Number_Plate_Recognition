@@ -82,7 +82,7 @@ class DataIngestion :
     def initiate_data_ingestion(self) :
         try :
             #Create data ingestion artifact directory
-            os.makedirs(self.data_ingestion_config.zip_download_dir)
+            os.makedirs(self.data_ingestion_config.zip_download_dir, exist_ok=True)
             self.downlaod_data()
             self.get_clean_and_unzipfile(zip_file_path=self.data_ingestion_config.zip_download_dir,
                                          unzip_dir_path=self.data_ingestion_config.raw_data_dir)

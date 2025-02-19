@@ -74,7 +74,7 @@ class DataTransformation :
                 label_normalized = (normalized_xmin, normalized_xmax, normalized_ymin, normalized_ymax)
                 data.append(normalize_load_image_arr)
                 output.append(label_normalized)
-                print(data)
+                #print(data)
 
             return data , output
         except Exception as e :

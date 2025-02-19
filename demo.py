@@ -13,17 +13,24 @@ from src.ANPR.entity.config_entity import DataIngestionConfig
 from src.ANPR.components.model_trainer import ModelTraining
 import os
 import sys
+from src.ANPR.exception import ANPR_Exceptioon
+from src.ANPR.logger import log
+from src.ANPR.pipeline.pipeline import Pipeline
 
 def main() :
     try :
         config_path = os.path.join("config", "config.yaml")
-        pipeline = Pipeline(Configuration(config_file_path=config_path))
+        configure = Configuration(config_file_path=config_path)
+        pipeline = Pipeline(config=configure)
+        pipeline.run()
+        #experiment_dataframe = pipeline.get_experiments_status()
+        #print(experiment_dataframe)
         #pipeline.runpipeline()
         #pipeline.start()
         # training_data_config =Configuration(config_file_path=config_path).get_training_pipeline_config()
         # print(training_data_config)
         # logging.info("main function execution completed")
-        configure = Configuration(config_file_path=config_path)
+        
         #dataIngestion_config = configure.get_data_ingestion_config()
         #Data_Ingestion
         # data_ingestion_artifacts = configure.get_data_ingestion_artifacts()
@@ -31,13 +38,17 @@ def main() :
         # data_transformed_artifacts = configure.get_data_transformation_artifact_config()
         # print(data_transformed_artifacts)
 
+        #TrainPileline = Pipeline()
+
         #data_transformed_config = configure.data_transformation_config()
         #data_ingestion_artifacts = configure.get_data_ingestion_artifacts()
         #prepare_base_model_config = configure.get_prepare_base_model_config()
 
         #PrepareBaseModel(prepare_base_model_config=prepare_base_model_config).initiate_prepare_base_model()
 
-        ModelTraining(configure.get_training_config(), configure.get_prepare_callbacks_config(), configure.get_data_ingestion_artifacts(),configure.data_transformation_config(),configure.get_prepare_base_model_config()).initiate_model_training()
+        #ModelTraining(configure.get_training_config(), configure.get_prepare_callbacks_config(), configure.get_data_ingestion_artifacts(),configure.data_transformation_config(),configure.get_prepare_base_model_config()).initiate_model_training()
+
+
         
 
         #DataTransformation(data_transformed_config,data_ingestion_artifacts).initiate_data_transformation()

@@ -14,7 +14,7 @@ class Configuration :
         try:
             self.config_info = read_yaml(config_file_path=config_file_path)
             self.training_pipeline_config = self.get_training_pipeline_config()
-            #self.time_stamp = current_time_stamp
+            self.time_stamp = current_time_stamp
         except Exception as e :
             raise ANPR_Exceptioon(e, sys) from e
         
@@ -145,12 +145,12 @@ class Configuration :
             data_transformation_artifact_config = self.config_info[DATA_TRANSFORMATION_ARTIFACTS_CONFIG]
             data_transformation_config = self.config_info[DATA_TRANSFORMATION_CONFIG]
             data_transformation_artifact_dir = data_transformation_config[DATA_TRANSFORMATION_ARTIFACT_DIR]
-            transformed_data_file_path = os.path.join(artifact_dir,data_transformation_artifact_dir, data_transformation_artifact_config[TRANSFORMED_DATA_FILE_PATH])
-            transformed_output_file_path = os.path.join(artifact_dir,TRANSFORMED_OUTPUT_FILE_PATH)
+            # transformed_data= os.path.join(artifact_dir,data_transformation_artifact_dir, data_transformation_artifact_config[TRANSFORMED_DATA_FILE_PATH])
+            # transformed_output = os.path.join(artifact_dir,TRANSFORMED_OUTPUT_FILE_PATH)
 
             data_transformation_artifact = DataTransformationArtifacts(
-                transformed_data_file_path=str,
-                transformed_output_file_path=str
+                transformed_data=str,
+                transformed_output=str
             )
             return data_transformation_artifact
         except Exception as e :

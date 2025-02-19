@@ -18,8 +18,8 @@ data_transformation_config :
 
 #data transformation artifacts
 data_transformation_artifact_config :
-  transformed_data_file_path: data.npy
-  transformed_output_file_path: output.npy
+  transformed_data: data.npy
+  transformed_output: output.npy
 
 
 #Artifacts related config

@@ -7,6 +7,7 @@ from ANPR.entity.config_entity import *
 from ANPR.entity.artifacts_entity import *
 from ANPR.constants import *
 import os, sys, time
+from ANPR.components.data_transformation import DataTransformation
 from keras.utils import custom_object_scope
 from ANPR.components.customlayers import CustomScaleLayer  # Import your custom layer
 # Ensure eager execution is enabled
@@ -18,7 +19,7 @@ class ModelTraining :
                  training_config: TrainingConfig,
                  prepare_callbacks_config: PrepareCallbacksConfig,
                  data_ingestion_artifact: DataIngestionArtifacts,
-                 data_transformation_artifact: DataTransformationArtifacts,
+                 data_transformation_artifact: DataTransformationConfig,
                  prepare_base_model_artifact: PrepareBaseModelArtifacts) :
         
         self.training_config = training_config
@@ -59,7 +60,7 @@ class ModelTraining :
             self.model.compile(optimizer=tf.keras.optimizers.Adam(), loss='mse')
     
     def split_train_test(self):
-        print(f"data numpy array file = {self.data_transformation_artifact.transformed_data}")
+        #print(f"data numpy array file = {self.data_transformation_artifact.transformed_data}")
         print(f"length = {len(self.data_transformation_artifact.transformed_data)}")
         X = load_numpy_array_data(file_path=self.data_transformation_artifact.transformed_data)
         y = load_numpy_array_data(file_path=self.data_transformation_artifact.transformed_output)
